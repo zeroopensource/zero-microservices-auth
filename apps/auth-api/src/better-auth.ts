@@ -14,14 +14,14 @@ export const auth = betterAuth({
     enabled: true,
   },
   socialProviders: {
-    github: {
-      clientId: ENV.GITHUB_CLIENT_ID,
-      clientSecret: ENV.GITHUB_CLIENT_SECRET,
-    },
-    google: {
-      clientId: ENV.GOOGLE_CLIENT_ID,
-      clientSecret: ENV.GOOGLE_CLIENT_SECRET,
-    },
+    // github: {
+    //   clientId: ENV.GITHUB_CLIENT_ID,
+    //   clientSecret: ENV.GITHUB_CLIENT_SECRET,
+    // },
+    // google: {
+    //   clientId: ENV.GOOGLE_CLIENT_ID,
+    //   clientSecret: ENV.GOOGLE_CLIENT_SECRET,
+    // },
   },
 });
 
