@@ -1,6 +1,13 @@
 # zero-microservices-auth
 
 
+```
+pnpm dev
+```
+
+
+
+
 # References
 
 - https://hono.dev/examples/better-auth
