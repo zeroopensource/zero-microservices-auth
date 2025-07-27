@@ -5,9 +5,9 @@ export default defineConfig({
   schema: './src/db/schema.ts',
   out: './src/db/migrations',
   dialect: 'sqlite',
-  driver: 'turso',
+  //driver: 'turso',
   dbCredentials: {
     url: ENV.DATABASE_URL,
-    authToken: ENV.DATABASE_AUTH_TOKEN,
+    //authToken: ENV.DATABASE_AUTH_TOKEN,
   },
 });
