@@ -1,9 +1,14 @@
-import { Hono } from 'hono';
+import { serve } from '@hono/node-server';
 
-const app = new Hono();
+import app from './app';
+import { ENV } from './env';
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!');
+const port = ENV.PORT;
+
+// biome-ignore lint/suspicious/noConsole: For deploy status
+console.log(`Server is running on port http://localhost:${port}`);
+
+serve({
+  fetch: app.fetch,
+  port,
 });
-
-export default app;
