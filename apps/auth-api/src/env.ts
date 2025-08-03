@@ -1,13 +1,12 @@
 /* eslint-disable node/no-process-env */
-
-import path from 'node:path';
+import { resolve } from 'node:path';
 import { config } from 'dotenv';
 import { expand } from 'dotenv-expand';
 import { z } from 'zod';
 
 expand(
   config({
-    path: path.resolve(
+    path: resolve(
       process.cwd(),
       process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
     ),
@@ -33,9 +32,10 @@ const EnvSchema = z
   .superRefine((input, ctx) => {
     if (input.NODE_ENV === 'production' && !input.DATABASE_AUTH_TOKEN) {
       ctx.addIssue({
-        code: z.ZodIssueCode.invalid_type,
+        code: 'invalid_type',
         expected: 'string',
         received: 'undefined',
+        input: input.DATABASE_AUTH_TOKEN,
         path: ['DATABASE_AUTH_TOKEN'],
         message: "Must be set when NODE_ENV is 'production'",
       });
@@ -48,7 +48,9 @@ export type env = z.infer<typeof EnvSchema>;
 const { data: env, error } = EnvSchema.safeParse(process.env);
 
 if (error) {
+  // biome-ignore lint/suspicious/noConsole: For deploy logs
   console.error('❌ Invalid env:');
+  // biome-ignore lint/suspicious/noConsole: For deploy logs
   console.error(JSON.stringify(error.flatten().fieldErrors, null, 2));
   process.exit(1);
 }
