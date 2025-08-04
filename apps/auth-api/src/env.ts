@@ -35,7 +35,7 @@ const EnvSchema = z
         code: 'invalid_type',
         expected: 'string',
         received: 'undefined',
-        input: input.DATABASE_AUTH_TOKEN,
+        input: '********',
         path: ['DATABASE_AUTH_TOKEN'],
         message: "Must be set when NODE_ENV is 'production'",
       });
