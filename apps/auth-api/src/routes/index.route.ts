@@ -23,7 +23,7 @@ const router = createRouter().openapi(
         message: 'Tasks API',
       },
       HttpStatusCodes.OK
-    );
+    ) as unknown as Promise<never>; // TODO: Fix this type from hono version
   }
 );
 
