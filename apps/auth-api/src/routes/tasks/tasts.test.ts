@@ -25,10 +25,12 @@ if (ENV.NODE_ENV !== 'test') {
 const client = testClient(createTestApp(router));
 
 describe('tasks routes', () => {
+  // biome-ignore lint/suspicious/useAwait: Ignore this
   beforeAll(async () => {
     execSync('pnpm drizzle-kit push');
   });
 
+  // biome-ignore lint/suspicious/useAwait: Ignore this
   afterAll(async () => {
     fs.rmSync('test.db', { force: true });
   });
