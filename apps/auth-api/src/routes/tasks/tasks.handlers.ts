@@ -1,11 +1,12 @@
 import { eq } from 'drizzle-orm';
+// biome-ignore lint/performance/noNamespaceImport: Documented usage
 import * as HttpStatusCodes from 'stoker/http-status-codes';
+// biome-ignore lint/performance/noNamespaceImport: Documented usage
 import * as HttpStatusPhrases from 'stoker/http-status-phrases';
 import db from '@/db';
 import { tasks } from '@/db/schema';
 import { ZOD_ERROR_CODES, ZOD_ERROR_MESSAGES } from '@/lib/constants';
 import type { AppRouteHandler } from '@/lib/types';
-
 import type {
   CreateRoute,
   GetOneRoute,
@@ -15,8 +16,8 @@ import type {
 } from './tasks.routes';
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
-  const tasks = await db.query.tasks.findMany();
-  return c.json(tasks);
+  const listedTasks = await db.query.tasks.findMany();
+  return c.json(listedTasks);
 };
 
 export const create: AppRouteHandler<CreateRoute> = async (c) => {
