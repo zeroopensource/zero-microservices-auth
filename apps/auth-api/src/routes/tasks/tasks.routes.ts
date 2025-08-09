@@ -1,8 +1,8 @@
 import { createRoute, z } from '@hono/zod-openapi';
+// biome-ignore lint/performance/noNamespaceImport: Documented usage
 import * as HttpStatusCodes from 'stoker/http-status-codes';
 import { jsonContent, jsonContentRequired } from 'stoker/openapi/helpers';
 import { createErrorSchema, IdParamsSchema } from 'stoker/openapi/schemas';
-
 import {
   insertTasksSchema,
   patchTasksSchema,
