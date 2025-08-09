@@ -1,6 +1,7 @@
 import { createRouter } from '@/lib/create-app';
-
+// biome-ignore lint/performance/noNamespaceImport: TODO: Fix this
 import * as handlers from './tasks.handlers';
+// biome-ignore lint/performance/noNamespaceImport: TODO: Fix this
 import * as routes from './tasks.routes';
 
 const router = createRouter()
