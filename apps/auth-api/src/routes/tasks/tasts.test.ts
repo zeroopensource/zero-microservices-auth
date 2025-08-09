@@ -35,7 +35,6 @@ describe('tasks routes', () => {
 
   it('post /tasks validates the body when creating', async () => {
     const response = await client.tasks.$post({
-      // @ts-expect-error
       json: {
         done: false,
       },
@@ -44,7 +43,9 @@ describe('tasks routes', () => {
     if (response.status === 422) {
       const json = await response.json();
       expect(json.error.issues[0].path[0]).toBe('name');
-      expect(json.error.issues[0].message).toBe(ZOD_ERROR_MESSAGES.REQUIRED);
+      expect(json.error.issues[0].message).toBe(
+        ZOD_ERROR_MESSAGES.EXPECTED_STRING
+      );
     }
   });
 
@@ -79,7 +80,6 @@ describe('tasks routes', () => {
   it('get /tasks/{id} validates the id param', async () => {
     const response = await client.tasks[':id'].$get({
       param: {
-        // @ts-expect-error
         id: 'wat',
       },
     });
@@ -140,7 +140,6 @@ describe('tasks routes', () => {
   it('patch /tasks/{id} validates the id param', async () => {
     const response = await client.tasks[':id'].$patch({
       param: {
-        // @ts-expect-error
         id: 'wat',
       },
       json: {},
@@ -189,7 +188,6 @@ describe('tasks routes', () => {
   it('delete /tasks/{id} validates the id when deleting', async () => {
     const response = await client.tasks[':id'].$delete({
       param: {
-        // @ts-expect-error
         id: 'wat',
       },
     });
