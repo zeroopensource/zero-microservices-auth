@@ -1,8 +1,8 @@
 import { createRoute } from '@hono/zod-openapi';
+// biome-ignore lint/performance/noNamespaceImport: Documented usage
 import * as HttpStatusCodes from 'stoker/http-status-codes';
 import { jsonContent } from 'stoker/openapi/helpers';
 import { createMessageObjectSchema } from 'stoker/openapi/schemas';
-
 import { createRouter } from '@/lib/create-app';
 
 const router = createRouter().openapi(
