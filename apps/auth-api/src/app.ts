@@ -9,9 +9,9 @@ configureOpenAPI(app);
 
 const routes = [index, tasks] as const;
 
-routes.forEach((route) => {
+for (const route of routes) {
   app.route('/', route);
-});
+}
 
 export type AppType = (typeof routes)[number];
 
