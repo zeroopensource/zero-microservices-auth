@@ -1,12 +1,14 @@
 # zero-microservices-auth
 
-
 ```
 pnpm dev
 ```
 
-
-
+```
+http://localhost:9999
+http://localhost:9999/doc
+http://localhost:9999/reference
+```
 
 # References
 
@@ -14,4 +16,3 @@ pnpm dev
 - https://www.better-auth.com/docs/integrations/hono
 - https://github.com/w3cj/hono-open-api-starter
 - https://github.com/LovelessCodes/hono-better-auth
-
