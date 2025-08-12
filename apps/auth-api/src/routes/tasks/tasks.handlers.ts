@@ -3,7 +3,7 @@ import { eq } from 'drizzle-orm';
 import * as HttpStatusCodes from 'stoker/http-status-codes';
 // biome-ignore lint/performance/noNamespaceImport: Documented usage
 import * as HttpStatusPhrases from 'stoker/http-status-phrases';
-import db from '@/db';
+import { db } from '@/db';
 import { tasks } from '@/db/schema';
 import { ZOD_ERROR_CODES, ZOD_ERROR_MESSAGES } from '@/lib/constants';
 import type { AppRouteHandler } from '@/lib/types';

@@ -13,4 +13,4 @@ const db = drizzle({
   schema,
 });
 
-export default db;
+export { db };
