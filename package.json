@@ -14,18 +14,18 @@
     "zero-id": "zero-id"
   },
   "devDependencies": {
-    "cpx": "1.5.0",
-    "tsup": "8.5.0",
-    "typescript": "5.8.3",
+    "@biomejs/biome": "2.1.2",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "2.29.3",
     "@types/node": "22.15.20",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "@zeroopensource/zero-cli": "latest",
+    "cpx": "1.5.0",
+    "tsup": "8.5.0",
     "turbo": "^2.5.2",
-    "@zeroopensource/zero-cli": "latest"
+    "typescript": "5.8.3",
+    "ultracite": "5.0.32"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=18"
   }
