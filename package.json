@@ -13,20 +13,22 @@
     "prepack": "turbo run prepack",
     "zero-id": "zero-id"
   },
+  "dependencies": {},
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
-    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.29.3",
     "@types/node": "22.15.20",
     "@zeroopensource/zero-cli": "latest",
     "cpx": "1.5.0",
     "tsup": "8.5.0",
-    "turbo": "^2.5.2",
+    "turbo": "2.5.6",
     "typescript": "5.8.3",
-    "ultracite": "5.0.32"
+    "ultracite": "5.2.4"
   },
   "packageManager": "pnpm@10.14.0",
-  "engines": {
-    "node": ">=18"
-  }
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
