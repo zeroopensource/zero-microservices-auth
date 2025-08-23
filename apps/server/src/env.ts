@@ -15,10 +15,12 @@ expand(
   })
 );
 
+const DEFAULT_PORT = 9999 as const;
+
 const EnvSchema = z
   .object({
     NODE_ENV: z.string().default('development'),
-    PORT: z.coerce.number().default(9999),
+    PORT: z.coerce.number().default(DEFAULT_PORT),
     LOG_LEVEL: z.enum([
       'fatal',
       'error',
