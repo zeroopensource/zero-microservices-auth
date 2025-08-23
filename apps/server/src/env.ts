@@ -56,4 +56,4 @@ if (error) {
   process.exit(1);
 }
 
-export default env!;
+export default env;
