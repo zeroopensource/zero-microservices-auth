@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "dotenv": "^17.2.1",
+    "dotenv-expand": "12.0.2",
     "zod": "^4.0.2",
     "@orpc/server": "^1.5.0",
     "@orpc/client": "^1.5.0",

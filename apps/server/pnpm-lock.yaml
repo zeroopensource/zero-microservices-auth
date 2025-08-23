@@ -32,6 +32,9 @@ importers:
       dotenv:
         specifier: ^17.2.1
         version: 17.2.1
+      dotenv-expand:
+        specifier: 12.0.2
+        version: 12.0.2
       drizzle-orm:
         specifier: ^0.44.2
         version: 0.44.4(@opentelemetry/api@1.9.0)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)
@@ -60,9 +63,6 @@ importers:
       tsdown:
         specifier: ^0.12.9
         version: 0.12.9(typescript@5.9.2)
-      tsx:
-        specifier: ^4.19.2
-        version: 4.20.4
       typescript:
         specifier: ^5.8.2
         version: 5.9.2
@@ -697,6 +697,14 @@ packages:
     resolution: {integrity: sha512-sSuxWU5j5SR9QQji/o2qMvqRNYRDOcBTgsJ/DeCf4iSN4gW+gNMXM7wFIP+fdXZxoNiAnHUTGjCr+TSWXdRDKg==}
     engines: {node: '>=0.3.1'}
 
+  dotenv-expand@12.0.2:
+    resolution: {integrity: sha512-lXpXz2ZE1cea1gL4sz2Ipj8y4PiVjytYr3Ij0SWoms1PGxIv7m2CRKuRuCRtHdVuvM/hNJPMxt5PbhboNC4dPQ==}
+    engines: {node: '>=12'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
   dotenv@17.2.1:
     resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
     engines: {node: '>=12'}
@@ -845,11 +853,6 @@ packages:
     peerDependenciesMeta:
       picomatch:
         optional: true
-
-  fsevents@2.3.3:
-    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
 
   get-tsconfig@4.10.1:
     resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
@@ -1044,11 +1047,6 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
-
-  tsx@4.20.4:
-    resolution: {integrity: sha512-yyxBKfORQ7LuRt/BQKBXrpcq59ZvSW0XxwfjAt3w2/8PmdxaFzijtMhTawprSHhpzeM5BgU2hXHG3lklIERZXg==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
 
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
@@ -1605,6 +1603,12 @@ snapshots:
 
   diff@8.0.2: {}
 
+  dotenv-expand@12.0.2:
+    dependencies:
+      dotenv: 16.6.1
+
+  dotenv@16.6.1: {}
+
   dotenv@17.2.1: {}
 
   drizzle-kit@0.31.4:
@@ -1699,9 +1703,6 @@ snapshots:
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
-
-  fsevents@2.3.3:
-    optional: true
 
   get-tsconfig@4.10.1:
     dependencies:
@@ -1877,13 +1878,6 @@ snapshots:
       - vue-tsc
 
   tslib@2.8.1: {}
-
-  tsx@4.20.4:
-    dependencies:
-      esbuild: 0.25.9
-      get-tsconfig: 4.10.1
-    optionalDependencies:
-      fsevents: 2.3.3
 
   type-fest@4.41.0: {}
 
