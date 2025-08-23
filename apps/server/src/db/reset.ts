@@ -1,10 +1,11 @@
 /** biome-ignore-all lint/suspicious/noConsole: Documented Usage */
 import { sql } from 'drizzle-orm';
 import { db } from './';
+import 'dotenv/config';
 
 async function reset() {
-  if (!('POSTGRES_URL' in process.env)) {
-    throw new Error('POSTGRES_URL not found on .env.development');
+  if (!('DATABASE_URL' in process.env)) {
+    throw new Error('DATABASE_URL not found on .env.development');
   }
 
   console.log('⏳ Resetting database...');
