@@ -9,6 +9,7 @@
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "db:push": "drizzle-kit push",
+    "db:reset": "bun run ./src/db/reset.ts",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"
@@ -21,6 +22,7 @@
     "hono": "^4.8.2",
     "@hono/node-server": "^1.14.4",
     "drizzle-orm": "^0.44.2",
+    "drizzle-seed": "0.3.1",
     "pg": "^8.14.1",
     "ai": "^5.0.9",
     "@ai-sdk/google": "^2.0.3",
