@@ -1,7 +1,3 @@
-import { authSchema } from './schema/auth';
-import { todoSchema } from './schema/todo';
-
-export const schema = {
-  authSchema,
-  todoSchema,
-};
+/** biome-ignore-all lint/performance/noBarrelFile: Documented Usage */
+export * from './schema/auth';
+export * from './schema/todo';
