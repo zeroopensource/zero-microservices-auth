@@ -39,6 +39,13 @@ export const session = pgTable('session', {
   userAgent: text('user_agent'),
 
   impersonatedBy: text('impersonated_by'),
+  activeOrganizationId: text('active_organization_id').references(
+    () => organization.id,
+    { onDelete: 'cascade' }
+  ),
+  activeTeamId: text('active_team_id').references(() => team.id, {
+    onDelete: 'cascade',
+  }),
 });
 
 export const account = pgTable('account', {
