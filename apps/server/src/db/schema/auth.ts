@@ -127,6 +127,75 @@ export const apiKey = pgTable('api_key', {
   metadata: text('metadata'),
 });
 
+export const organization = pgTable('organization', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  name: text('name').notNull(),
+  slug: text('slug').notNull(),
+  logo: text('logo'),
+  metadata: text('metadata'),
+});
+
+export const member = pgTable('member', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+  role: text('role').notNull(),
+});
+
+export const team = pgTable('team', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  name: text('name').notNull(),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+});
+
+export const teamMember = pgTable('team_member', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  teamId: text('team_id')
+    .notNull()
+    .references(() => team.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+});
+
+export const invitation = pgTable('invitation', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  email: text('email').notNull(),
+  inviterId: text('inviter_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+  role: text('role').notNull(),
+  status: text('status').notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  teamId: text('team_id')
+    .notNull()
+    .references(() => team.id, { onDelete: 'cascade' }),
+});
+
 export const authSchema = {
   user,
   session,
@@ -134,4 +203,10 @@ export const authSchema = {
   verification,
   twoFactor,
   passkey,
+  apiKey,
+  organization,
+  member,
+  invitation,
+  team,
+  teamMember,
 };
