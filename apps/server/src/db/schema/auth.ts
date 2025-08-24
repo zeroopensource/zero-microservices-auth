@@ -191,9 +191,7 @@ export const invitation = pgTable('invitation', {
   role: text('role').notNull(),
   status: text('status').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
-  teamId: text('team_id')
-    .notNull()
-    .references(() => team.id, { onDelete: 'cascade' }),
+  teamId: text('team_id').references(() => team.id, { onDelete: 'cascade' }),
 });
 
 export const authSchema = {
