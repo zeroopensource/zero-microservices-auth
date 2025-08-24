@@ -7,10 +7,4 @@ export const todo = pgTable('todo', {
   completed: boolean('completed').default(false).notNull(),
 });
 
-export const todo2 = pgTable('todo2', {
-  id: serial('id').primaryKey(),
-  text: text('text').notNull(),
-  completed: boolean('completed').default(false).notNull(),
-});
-
-export const todoSchema = { todo, todo2 };
+export const todoSchema = { todo };
