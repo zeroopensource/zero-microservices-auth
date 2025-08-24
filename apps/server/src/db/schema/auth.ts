@@ -204,7 +204,7 @@ export const authSchema = {
   apiKey,
   organization,
   member,
-  invitation,
   team,
   teamMember,
+  invitation,
 };
