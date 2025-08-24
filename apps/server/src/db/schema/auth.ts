@@ -1,4 +1,4 @@
-import { boolean, text, timestamp } from 'drizzle-orm/pg-core';
+import { boolean, integer, text, timestamp } from 'drizzle-orm/pg-core';
 import { pgTable } from './pgtable';
 
 // https://www.better-auth.com/docs/concepts/database
@@ -66,6 +66,23 @@ export const twoFactor = pgTable('two_factor', {
     .references(() => user.id, { onDelete: 'cascade' }),
   secret: text('secret'),
   backupCodes: text('backup_codes'),
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const passkey = pgTable('passkey', {
+  name: text('name'),
+  publicKey: text('public_key').notNull(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  credentialId: text('credential_id').notNull(),
+  counter: integer('counter').notNull().default(0),
+  deviceType: text('device_type').notNull(),
+  backedUp: boolean('backed_up').notNull().default(false),
+  transports: text('transports').notNull(),
+  aaguid: text('aaguid'),
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
