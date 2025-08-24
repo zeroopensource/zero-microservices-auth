@@ -104,6 +104,27 @@ export const apiKey = pgTable('api_key', {
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  name: text('name'),
+  start: text('start'),
+  prefix: text('prefix'),
+  key: text('key').notNull(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  refillInterval: integer('refill_interval'),
+  refillAmount: integer('refill_amount'),
+  lastRefillAt: timestamp('last_refill_at'),
+  enabled: boolean('enabled').notNull(),
+  rateLimitEnabled: boolean('rate_limit_enabled').notNull(),
+  rateLimitTimeWindow: integer('rate_limit_time_window'),
+  rateLimitMax: integer('rate_limit_max'),
+  requestCount: integer('request_count').notNull(),
+  remaining: integer('remaining'),
+  lastRequest: timestamp('last_request'),
+  expiresAt: timestamp('expires_at'),
+  permissions: text('permissions'),
+  // metadata: text('metadata'),
 });
 
 export const authSchema = {
