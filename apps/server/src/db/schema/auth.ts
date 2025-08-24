@@ -19,6 +19,9 @@ export const user = pgTable('user', {
   phoneNumber: text('phone_number').unique(),
   phoneNumberVerified: boolean('phone_number_verified'),
   role: text('role'),
+  banned: boolean('banned'),
+  banReason: text('ban_reason'),
+  banExpiresAt: timestamp('ban_expires_at'),
 });
 
 export const session = pgTable('session', {
@@ -32,6 +35,8 @@ export const session = pgTable('session', {
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  impersonatedBy: text('impersonated_by'),
 });
 
 export const account = pgTable('account', {
