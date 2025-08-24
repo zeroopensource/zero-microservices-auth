@@ -4,13 +4,14 @@ import { pgTable } from './pgtable';
 // https://www.better-auth.com/docs/concepts/database
 
 export const user = pgTable('user', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   emailVerified: boolean('email_verified').notNull(),
   image: text('image'),
-  id: text('id').primaryKey(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 
   twoFactorEnabled: boolean('two_factor_enabled'),
   // username: text('username').notNull().unique(), // Add default username generation
@@ -25,6 +26,10 @@ export const user = pgTable('user', {
 });
 
 export const session = pgTable('session', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
@@ -32,14 +37,15 @@ export const session = pgTable('session', {
   expiresAt: timestamp('expires_at').notNull().defaultNow(),
   ipAddress: text('ip_address'),
   userAgent: text('user_agent'),
-  id: text('id').primaryKey(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 
   impersonatedBy: text('impersonated_by'),
 });
 
 export const account = pgTable('account', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
@@ -52,32 +58,35 @@ export const account = pgTable('account', {
   scope: text('scope'),
   idToken: text('id_token'),
   password: text('password'),
-  id: text('id').primaryKey(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
 export const verification = pgTable('verification', {
-  identifier: text('identifier').notNull(),
-  value: text('value').notNull(),
-  expiresAt: timestamp('expires_at').notNull().defaultNow(),
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  identifier: text('identifier').notNull(),
+  value: text('value').notNull(),
+  expiresAt: timestamp('expires_at').notNull().defaultNow(),
 });
 
 export const twoFactor = pgTable('two_factor', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
   secret: text('secret'),
   backupCodes: text('backup_codes'),
-  id: text('id').primaryKey(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
 export const passkey = pgTable('passkey', {
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
   name: text('name'),
   publicKey: text('public_key').notNull(),
   userId: text('user_id')
@@ -89,9 +98,19 @@ export const passkey = pgTable('passkey', {
   backedUp: boolean('backed_up').notNull(),
   transports: text('transports').notNull(),
   aaguid: text('aaguid'),
+});
+
+export const apiKey = pgTable('api_key', {
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-export const authSchema = { user, session, account, verification, twoFactor };
+export const authSchema = {
+  user,
+  session,
+  account,
+  verification,
+  twoFactor,
+  passkey,
+};
