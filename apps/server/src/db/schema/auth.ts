@@ -13,12 +13,17 @@ export const user = pgTable('user', {
   emailVerified: boolean('email_verified').notNull(),
   image: text('image'),
 
+  // 2fa
   twoFactorEnabled: boolean('two_factor_enabled'),
-  // username: text('username').notNull().unique(), // Add default username generation
-  // displayUserName: text('display_user_name').notNull().unique(),
+  // username
+  username: text('username').notNull().unique(), // Add default username generation
+  displayUserName: text('display_user_name').notNull().unique(),
+  // anonymous
   isAnonymous: boolean('is_anonymous'),
+  // phone number
   phoneNumber: text('phone_number').unique(),
   phoneNumberVerified: boolean('phone_number_verified'),
+  // admin
   role: text('role'),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
@@ -38,7 +43,9 @@ export const session = pgTable('session', {
   ipAddress: text('ip_address'),
   userAgent: text('user_agent'),
 
+  // admin
   impersonatedBy: text('impersonated_by'),
+  // organization
   activeOrganizationId: text('active_organization_id').references(
     () => organization.id,
     { onDelete: 'cascade' }
@@ -60,8 +67,8 @@ export const account = pgTable('account', {
   providerId: text('provider_id').notNull(),
   accessToken: text('access_token'),
   refreshToken: text('refresh_token'),
-  accessTokenExpiresAt: timestamp('access_token_expires_at').defaultNow(),
-  refreshTokenExpiresAt: timestamp('refresh_token_expires_at').defaultNow(),
+  accessTokenExpiresAt: timestamp('access_token_expires_at'),
+  refreshTokenExpiresAt: timestamp('refresh_token_expires_at'),
   scope: text('scope'),
   idToken: text('id_token'),
   password: text('password'),
@@ -74,7 +81,7 @@ export const verification = pgTable('verification', {
 
   identifier: text('identifier').notNull(),
   value: text('value').notNull(),
-  expiresAt: timestamp('expires_at').notNull().defaultNow(),
+  expiresAt: timestamp('expires_at').notNull(),
 });
 
 export const twoFactor = pgTable('two_factor', {
