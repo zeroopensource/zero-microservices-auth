@@ -2,10 +2,19 @@
   "name": "zero-microservices-auth",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
+    "check": "biome check --write .",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F server db:push",
+    "db:reset": "turbo -F server db:reset",
+    "db:studio": "turbo -F server db:studio",
+    "db:generate": "turbo -F server db:generate",
+    "db:migrate": "turbo -F server db:migrate",
     "lint": "turbo run lint",
-    "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version": "changeset version",
@@ -13,20 +22,23 @@
     "prepack": "turbo run prepack",
     "zero-id": "zero-id"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@biomejs/biome": "2.1.2",
-    "@changesets/changelog-github": "^0.5.1",
+    "@biomejs/biome": "2.2.0",
+    "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.29.3",
     "@types/node": "22.15.20",
     "@zeroopensource/zero-cli": "latest",
     "cpx": "1.5.0",
     "tsup": "8.5.0",
-    "turbo": "^2.5.2",
+    "turbo": "2.5.6",
     "typescript": "5.8.3",
-    "ultracite": "5.0.32"
+    "ultracite": "5.2.5",
+    "tsx": "4.20.4"
   },
-  "packageManager": "pnpm@10.14.0",
-  "engines": {
-    "node": ">=18"
-  }
+  "packageManager": "pnpm@10.15.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

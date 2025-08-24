@@ -16,7 +16,7 @@ import type {
 } from './tasks.routes';
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
-  const listedTasks = await db.query.tasks.findMany();
+  const listedTasks = await db.select().from(tasks)
   return c.json(listedTasks);
 };
 
