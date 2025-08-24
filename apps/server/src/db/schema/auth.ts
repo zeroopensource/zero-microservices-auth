@@ -1,6 +1,8 @@
 import { boolean, text, timestamp } from 'drizzle-orm/pg-core';
 import { pgTable } from './pgtable';
 
+// https://www.better-auth.com/docs/concepts/database
+
 export const user = pgTable('user', {
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
