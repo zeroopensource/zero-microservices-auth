@@ -12,12 +12,13 @@ export const user = pgTable('user', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 
-  twoFactorEnabled: boolean('two_factor_enabled').default(false),
+  twoFactorEnabled: boolean('two_factor_enabled'),
   // username: text('username').notNull().unique(), // Add default username generation
   // displayUserName: text('display_user_name').notNull().unique(),
-  isAnonymous: boolean('is_anonymous').default(false),
+  isAnonymous: boolean('is_anonymous'),
   phoneNumber: text('phone_number').unique(),
-  phoneNumberVerified: boolean('phone_number_verified').default(false),
+  phoneNumberVerified: boolean('phone_number_verified'),
+  role: text('role'),
 });
 
 export const session = pgTable('session', {
