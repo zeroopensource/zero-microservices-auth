@@ -124,7 +124,7 @@ export const apiKey = pgTable('api_key', {
   lastRequest: timestamp('last_request'),
   expiresAt: timestamp('expires_at'),
   permissions: text('permissions'),
-  // metadata: text('metadata'),
+  metadata: text('metadata'),
 });
 
 export const authSchema = {
