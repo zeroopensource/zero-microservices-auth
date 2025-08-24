@@ -11,6 +11,8 @@ export const user = pgTable('user', {
   id: text('id').primaryKey(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  twoFactorEnabled: boolean('two_factor_enabled').default(false),
 });
 
 export const session = pgTable('session', {
@@ -53,4 +55,15 @@ export const verification = pgTable('verification', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-export const authSchema = { user, session, account, verification };
+export const twoFactor = pgTable('two_factor', {
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  secret: text('secret'),
+  backupCodes: text('backup_codes'),
+  id: text('id').primaryKey(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const authSchema = { user, session, account, verification, twoFactor };
