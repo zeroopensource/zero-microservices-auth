@@ -12,7 +12,8 @@
     "db:reset": "tsx ./src/db/reset.ts",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "betterauth:generate": "pnpx @better-auth/cli@latest generate"
   },
   "dependencies": {
     "dotenv": "17.2.1",
